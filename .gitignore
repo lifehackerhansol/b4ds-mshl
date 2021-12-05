@@ -1,0 +1,4 @@
+*.nds
+*.elf
+build
+data
