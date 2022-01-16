@@ -64,7 +64,11 @@ int main(void) {
 	iprintf("Reading ini...\n");
 	iprintf(extlink.NDSFullPathFilenameAlias);
 	iprintf("\n");
-	std::string inipath = extlink.NDSFullPathFilenameAlias;
+	std::string inipath;
+	for(u32 i = 0; i < strlen(extlink.NDSFullPathFilenameAlias); i++){
+		inipath.push_back(extlink.NDSFullPathFilenameAlias[i]);
+	} 
+	iprintf(inipath.c_str());
 	inipath = inipath.erase(inipath.size() - 4) + ".txt";
 	f = fopen(inipath.c_str(), "r");
 	std::vector<char*> argarray;
