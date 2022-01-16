@@ -7,3 +7,4 @@ make
 rm -rf data
 make -C bootloader clean
 make -C bootstub clean
+make -C libprism clean

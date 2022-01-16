@@ -8,6 +8,8 @@ endif
 export TARGET := $(shell basename $(CURDIR))
 export TOPDIR := $(CURDIR)
 
+export LIBANDS      :=  $(CURDIR)/libands
+
 # GMAE_ICON is the image used to create the game icon, leave blank to use default rule
 GAME_ICON :=
 
@@ -22,19 +24,19 @@ GAME_SUBTITLE2 := lifehackerhansol
 
 include $(DEVKITARM)/ds_rules
 
-.PHONY: checkarm7 checkarm9 clean
+.PHONY: checkarm7 checkarm9 libands clean
 
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-all: checkarm7 checkarm9 $(TARGET).nds
+all: libands checkarm7 checkarm9 $(TARGET).nds
 
 #---------------------------------------------------------------------------------
-checkarm7:
+checkarm7: libands
 	$(MAKE) -C arm7
 
 #---------------------------------------------------------------------------------
-checkarm9:
+checkarm9: libands
 	$(MAKE) -C arm9
 
 #---------------------------------------------------------------------------------
@@ -52,7 +54,12 @@ arm9/$(TARGET).elf:
 	$(MAKE) -C arm9
 
 #---------------------------------------------------------------------------------
+libands:
+	$(MAKE) -C libands
+
+#---------------------------------------------------------------------------------
 clean:
 	$(MAKE) -C arm9 clean
 	$(MAKE) -C arm7 clean
+	$(MAKE) -C libands clean
 	rm -f $(TARGET).nds
