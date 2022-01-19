@@ -26,6 +26,7 @@ SOFTWARE.
 #include <unistd.h>
 
 #include <nds.h>
+#include <nds/arm9/dldi.h>
 #include <fat.h>
 
 #include "extlink.h"
@@ -49,6 +50,7 @@ int main(void) {
 	if(!fatInitDefault()) {
 		return fail("FAT init fail.");
 	}
+	if(io_dldi_data->driverSize > 0xE) return fail("DLDI driver too large.\nPlease update your kernel.");
 	FILE* f = fopen("/moonshl2/extlink.dat","r+b");
 	TExtLinkBody extlink;
 	if (f) {
