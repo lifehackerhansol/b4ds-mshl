@@ -7,8 +7,8 @@ $(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>dev
 endif
 
 # These set the information text in the nds file
-GAME_TITLE     := extlink2argv
-GAME_SUBTITLE1 := extlink to argv wrapper
+GAME_TITLE     := B4DS-MSHL
+GAME_SUBTITLE1 := extlink to Moonshell 2 wrapper
 GAME_SUBTITLE2 := lifehackerhansol
 
 include $(DEVKITARM)/ds_rules
