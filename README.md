@@ -7,6 +7,7 @@ This extlink only supports Xenon++'s hacked Moonshell version.
 ## How to use:
 1. Install nds-bootstrap: https://github.com/DS-Homebrew/nds-bootstrap/releases/latest
 1. Make two copies of `b4ds-mshl.nds` to `/moonshl2/extlink` and rename it to `_vh.b4ds-mshl.nds` and `_hn.b4ds-mshl.nds`
+1. Download the `.7z` file from https://github.com/RocketRobz/NTR_Forwarder/releases/latest and follow instructions on that page
 1. Go wild
 
 ### License
