@@ -69,34 +69,34 @@ int fail(std::string debug){
 }
 
 int main(void) {
-	if(!fatInitDefault())
+	if(!fatInitDefault()) {
 		return fail("FAT init fail.");
+	}
 
 	// limit to 0xD, as nds-bootstrap only supports up to 8KB DLDI for now.
 	if(io_dldi_data->driverSize > DLDI_SIZE_8KB) return fail("DLDI driver too large.\nPlease update your kernel.");
 
-	TExtLinkBody* extlink = (TExtLinkBody*)malloc(sizeof(TExtLinkBody));
+	TExtLinkBody extlink;
 	FILE* f = fopen("/moonshl2/extlink.dat","r+b");
 
 	if (f) {
-		memset(extlink, 0, sizeof(TExtLinkBody));
-		fread(extlink, 1, sizeof(TExtLinkBody),f);
-		if(extlink->ID != ExtLinkBody_ID) {
+		memset(&extlink, 0, sizeof(TExtLinkBody));
+		fread(&extlink, 1, sizeof(TExtLinkBody),f);
+		/*if(extlink.ID != ExtLinkBody_ID) {
 			fclose(f);
 			return fail("Extlink ID mismatch.");
-		}
+		}*/
 		fseek(f,0,SEEK_SET);
 		fwrite("____", 1, 4, f);
 		fflush(f);
 		fclose(f);
 	} else {
-		free(extlink);
 		return fail("Extlink does not exist.");
 	}
 
 	char target[768];
 	// this is the path of the ROM
-	ucs2tombs((unsigned char*)target, extlink->NDSFullPathFilenameUnicode, 768);
+	ucs2tombs((unsigned char*)target, extlink.NDSFullPathFilenameUnicode, 768);
 
 	const char *argarray[2] = {
 		"fat:/_nds/ntr-forwarder/sdcard.nds",
