@@ -13,7 +13,7 @@ GAME_SUBTITLE2 := lifehackerhansol
 
 include $(DEVKITARM)/ds_rules
 
-export LIBANDS = $(CURDIR)/libands
+export LIBNDS32 = $(CURDIR)/libnds32
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
@@ -52,7 +52,7 @@ LDFLAGS   = -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project (order is important)
 #---------------------------------------------------------------------------------
-LIBS := -lfat -lands9
+LIBS := -lfat -lnds329
 
 # automatigically add libraries for NitroFS
 ifneq ($(strip $(NITRO)),)
@@ -67,7 +67,7 @@ endif
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS := $(LIBANDS) $(LIBNDS) $(PORTLIBS)
+LIBDIRS := $(LIBNDS32) $(LIBNDS) $(PORTLIBS)
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
